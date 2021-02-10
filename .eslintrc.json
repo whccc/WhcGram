@@ -19,13 +19,17 @@
     }
   },
   "rules": {
-    "react/jsx-filename-extension": [2, { "extensions": [".ts", ".tsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/triple-slash-reference": 0,
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "linebreak-style": 0,
     "import/no-unresolved": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "react/prop-types": "off",
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off"
   }
 }
