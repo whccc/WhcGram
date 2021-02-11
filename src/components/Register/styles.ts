@@ -2,9 +2,13 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   Container: {
-    marginTop: 80,
+    position: 'relative',
     width: '100%',
-    padding: 10,
+    height: '100%',
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 50,
+    zIndex: 1,
   },
   ContainerImg: {
     display: 'flex',
@@ -12,8 +16,8 @@ const styles = StyleSheet.create({
   },
   Img: {
     borderRadius: 100,
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 150,
   },
   Button: {
     marginTop: 5,

@@ -35,7 +35,7 @@ export default function App() {
             ),
             headerTintColor: '#fff',
             headerPressColorAndroid: '#fff',
-            headerShown: false,
+            headerShown: true,
           }}
         >
           <Stack.Screen name="Login" component={LoginScreen} />
