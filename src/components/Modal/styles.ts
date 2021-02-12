@@ -3,14 +3,13 @@ import Theme from '../../theme/main';
 
 const Styles = StyleSheet.create({
   ContainerModal: {
-    borderWidth: 1,
     padding: 40,
   },
   ContainerImg: {
     alignItems: 'center',
     position: 'relative',
     width: '100%',
-    height: 300,
+    height: 260,
     padding: 10,
     backgroundColor: '#fff',
     zIndex: 1,
@@ -18,7 +17,7 @@ const Styles = StyleSheet.create({
     borderTopLeftRadius: 20,
   },
   Img: {
-    borderRadius: 10,
+    borderRadius: 5,
     position: 'relative',
     width: '100%',
     height: '100%',
@@ -26,7 +25,7 @@ const Styles = StyleSheet.create({
   ButtonAddImg: {
     position: 'absolute',
     color: '#fff',
-    bottom: -30,
+    bottom: -20,
     zIndex: 10,
     elevation: 10,
     right: 0,
@@ -37,7 +36,7 @@ const Styles = StyleSheet.create({
   },
   ContainerAnimatableButton: {
     position: 'absolute',
-    bottom: 130,
+    bottom: 170,
     borderColor: '#fff',
     right: 10,
     elevation: 10,

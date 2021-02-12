@@ -3,19 +3,19 @@ import { Button, TextInput } from 'react-native-paper';
 import { View, Image, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import FormData from 'form-data';
-import useLogin from '../../hook/useLogin';
 import { CPActivityIndicator } from '../ActivityIndicator';
 import Logo from '../../assets/Logo.jpg';
 import styles from './styles';
 
-export const Register = () => {
+export const Register: React.FC<{
+  HookRegisterUserAsync: (FormDatas: any) => Promise<boolean | null>;
+}> = ({ HookRegisterUserAsync }) => {
   const [strNames, setStrNames] = useState('');
   const [strUser, setStrUser] = useState('');
   const [strPassword, setStrPassword] = useState('');
   const [blobImageUser, setBlobImageUser] = useState('');
   const [isActivedIndicator, setIsActived] = useState(false);
   // HOOKS
-  const { HookRegisterUserAsync } = useLogin();
 
   //---------------------
   // MANEJO DE LA CAMARA

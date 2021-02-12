@@ -17,6 +17,14 @@ const Styles = StyleSheet.create({
   Img: {
     width: 50,
     height: 50,
+    borderWidth: 1,
+    marginRight: -10,
+    borderRadius: 100,
+  },
+  ContainerAvatar: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 

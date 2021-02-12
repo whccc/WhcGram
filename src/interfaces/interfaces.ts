@@ -10,3 +10,13 @@ export interface ITabMenu {
   barColor: string;
   pressColor: string;
 }
+export interface IPostUser {
+  _id: string;
+  URLImagen: string;
+  strTitle: string;
+  strDescription: string;
+  strIdUserPost: {
+    URLImgPerson: string;
+    strNames: string;
+  };
+}

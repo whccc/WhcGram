@@ -32,6 +32,12 @@
     "react/prop-types": "off",
     "operator-linebreak": "off",
     "implicit-arrow-linebreak": "off",
-    "no-confusing-arrow": "off"
+    "no-confusing-arrow": "off",
+    "comma-dangle": "off",
+    "no-unused-vars": "off",
+    "no-alert": 0,
+    "no-underscore-dangle": 0,
+    "react/no-unused-prop-types": "off",
+    "object-curly-newline": 0
   }
 }

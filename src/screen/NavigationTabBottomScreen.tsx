@@ -3,7 +3,7 @@ import BottomNavigation, {
 } from 'react-native-material-bottom-navigation';
 import { SafeAreaView, View, Platform, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { ITabMenu } from '../interfaces/interfaces';
 import HomeScreen from './HomeScreen';
 import ChatScreen from './ChatScreen';
@@ -11,6 +11,7 @@ import ProfileScreen from './ProfileScreen';
 import { AppBarProfile } from '../components/AppBarProfile';
 
 import Theme from '../theme/main';
+import UserLocalStorageContext from '../context/UserLocalStorageContext';
 
 const tabs = [
   {
@@ -41,6 +42,9 @@ const tabs = [
 
 const NavigationTabBottomScreen = () => {
   const [activeTab, setactiveTab] = useState<string>('Home');
+  const { JsonUser, HookCloseSessionAsync } = useContext(
+    UserLocalStorageContext
+  );
   //----------------
   // RENDER SCREENS
   //----------------
@@ -81,7 +85,11 @@ const NavigationTabBottomScreen = () => {
     >
       <View style={{ flex: 1 }}>
         <View>
-          <AppBarProfile />
+          <AppBarProfile
+            HookCloseSessionAsync={HookCloseSessionAsync}
+            ImgUser={JsonUser.URLImgPerson}
+            StrNames={JsonUser.strNames}
+          />
           {renderScreen()}
         </View>
       </View>
