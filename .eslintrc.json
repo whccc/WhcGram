@@ -38,6 +38,7 @@
     "no-alert": 0,
     "no-underscore-dangle": 0,
     "react/no-unused-prop-types": "off",
-    "object-curly-newline": 0
+    "object-curly-newline": 0,
+    "no-undef": 0
   }
 }

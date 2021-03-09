@@ -3,48 +3,58 @@ import BottomNavigation, {
 } from 'react-native-material-bottom-navigation';
 import { SafeAreaView, View, Platform, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ITabMenu } from '../interfaces/interfaces';
 import HomeScreen from './HomeScreen';
-import ChatScreen from './ChatScreen';
+import ChatScreen from './ChatsUsersScreen';
 import ProfileScreen from './ProfileScreen';
 import { AppBarProfile } from '../components/AppBarProfile';
 
 import Theme from '../theme/main';
 import UserLocalStorageContext from '../context/UserLocalStorageContext';
+import SocketIOClientContext from '../context/SocketIOClientContext';
 
-const tabs = [
-  {
-    key: 'Home',
-    label: 'Inicio',
-    icon: 'home',
-    screen: <HomeScreen />,
-    barColor: Theme.colors.primary,
-    pressColor: 'rgba(255, 255, 255, 0.16)',
-  },
-  {
-    key: 'Chat',
-    label: 'Chats',
-    icon: 'wechat',
-    screen: <ChatScreen />,
-    barColor: Theme.colors.primary,
-    pressColor: 'rgba(255, 255, 255, 0.16)',
-  },
-  {
-    key: 'Profile',
-    label: 'Perfil',
-    barColor: Theme.colors.primary,
-    icon: 'profile',
-    screen: <ProfileScreen />,
-    pressColor: 'rgba(255, 255, 255, 0.16)',
-  },
-];
-
-const NavigationTabBottomScreen = () => {
+const NavigationTabBottomScreen: React.FC<{ navigation: any }> = ({
+  navigation,
+}) => {
   const [activeTab, setactiveTab] = useState<string>('Home');
   const { JsonUser, HookCloseSessionAsync } = useContext(
     UserLocalStorageContext
   );
+  // CONTEXT
+  const { HookConnectionSocketIOAsync } = useContext(SocketIOClientContext);
+  useEffect(() => {
+    const InitialDataScreenAsync = async () => {
+      await HookConnectionSocketIOAsync();
+    };
+    InitialDataScreenAsync();
+  }, []);
+  const tabs = [
+    {
+      key: 'Home',
+      label: 'Inicio',
+      icon: 'home',
+      screen: <HomeScreen />,
+      barColor: Theme.colors.primary,
+      pressColor: 'rgba(255, 255, 255, 0.16)',
+    },
+    {
+      key: 'Chat',
+      label: 'Chats',
+      icon: 'wechat',
+      screen: <ChatScreen navigation={navigation} />,
+      barColor: Theme.colors.primary,
+      pressColor: 'rgba(255, 255, 255, 0.16)',
+    },
+    {
+      key: 'Profile',
+      label: 'Perfil',
+      barColor: Theme.colors.primary,
+      icon: 'profile',
+      screen: <ProfileScreen />,
+      pressColor: 'rgba(255, 255, 255, 0.16)',
+    },
+  ];
   //----------------
   // RENDER SCREENS
   //----------------

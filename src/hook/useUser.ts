@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import useLocalStorage from './useLocalStorage';
 import { URL_API } from '../helpers/EnviromentVariables';
 
@@ -9,13 +9,14 @@ const useUser = () => {
     _id: '',
     strNames: '',
   });
+  const [ArrayDataUsers, setArrayDataUsers] = useState([]);
+  const [ArrayRoomsUser, setArrayRoomsUser] = useState([]);
   // HOOKS
   const {
     HookCreateLocalStorageAsync,
     HookGetDataLocalStorageAsync,
     HookDeleteDataLocalStorageAsync,
   } = useLocalStorage();
-
   useEffect(() => {
     const GetDataLocalStorageAsync = async () => {
       const Data = await HookGetDataLocalStorageAsync();
@@ -31,7 +32,7 @@ const useUser = () => {
   //------------------
   const HookRegisterUserAsync = async (FormData: any) => {
     try {
-      await axios.post(`${URL_API}/Login`, FormData, {
+      await axios.post(`${URL_API}/User`, FormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -52,7 +53,7 @@ const useUser = () => {
     strPassword: string;
   }) => {
     try {
-      const Data = await axios.post(`${URL_API}/Login/StartSesion`, {
+      const Data = await axios.post(`${URL_API}/User/StartSesion`, {
         strUser,
         strPassword,
       });
@@ -88,11 +89,39 @@ const useUser = () => {
       strNames: '',
     });
   };
+  //----------------------------
+  // OBTENER TODOS LOS USUARIOS
+  //----------------------------
+  const HookGetUsersAsync = async () => {
+    try {
+      const Data = await axios.get(`${URL_API}/User`);
+      setArrayDataUsers(Data.data.DataUsers);
+    } catch (Error) {
+      setArrayDataUsers([]);
+    }
+  };
+  //---------------------------
+  // OBTENER SALAS DEL USUARIO
+  //---------------------------
+  const HookGetRoomsByUserAsync = async () => {
+    try {
+      const Data = await axios.get(
+        `${URL_API}/User/GetRoomUser/${JsonUser._id}`
+      );
+      setArrayRoomsUser(Data.data.DataRoomsUser.ArrayRooms);
+    } catch (Error) {
+      setArrayRoomsUser([]);
+    }
+  };
   return {
     JsonUser,
+    ArrayRoomsUser,
+    ArrayDataUsers,
     HookRegisterUserAsync,
     HookLoginAsync,
     HookCloseSessionAsync,
+    HookGetUsersAsync,
+    HookGetRoomsByUserAsync,
   };
 };
 
